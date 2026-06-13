@@ -53,16 +53,18 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {heroStats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-xl border border-card-border bg-card/60 p-5 backdrop-blur-sm"
+              className="rounded-xl border border-card-border bg-card/60 p-5 backdrop-blur-sm transition-colors hover:border-accent/20"
             >
-              <p className="font-mono text-3xl font-bold text-accent">
+              <p className="font-mono text-2xl font-bold text-accent sm:text-3xl">
                 {stat.value}
               </p>
-              <p className="mt-1 text-sm text-muted">{stat.label}</p>
+              <p className="mt-1.5 text-sm leading-snug text-muted">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>

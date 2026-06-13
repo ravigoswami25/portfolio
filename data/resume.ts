@@ -12,9 +12,12 @@ export const personal = {
 };
 
 export const heroStats = [
-  { value: "6+", label: "Years Experience" },
-  { value: "100x", label: "API Latency Reduction" },
-  { value: "14", label: "Engineer Team Led" },
+  { value: "6+", label: "Years in Production Engineering" },
+  { value: "100x", label: "API Speed Gain (8s → 80ms P99)" },
+  { value: "4L+", label: "Monthly Active Users Served" },
+  { value: "5M+", label: "Records at Scale (MongoDB)" },
+  { value: "99.9%", label: "Payment Gateway Uptime" },
+  { value: "1,000+", label: "Sites Onboarded" },
 ];
 
 export const summary = `Results-driven Full Stack Engineer with 6+ years of experience architecting and delivering high-performance, scalable backend systems using Node.js, NestJS, and microservices. Collaborated across a cross-functional team of 14 engineers on 3 concurrent product deliveries, contributing to ~95% on-time sprint completion.
