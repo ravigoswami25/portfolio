@@ -1,0 +1,38 @@
+---
+title: "Supplynote API Performance Overhaul"
+description: "A comprehensive performance optimization initiative that achieved a 100x reduction in API response times through schema redesign, indexing, and caching."
+company: "Supplynote (Adcount Technologies)"
+impact: "P99 latency reduced from ~8s to under 80ms — a 100x improvement"
+technologies:
+  - Node.js
+  - MongoDB
+  - Redis
+  - Kubernetes
+  - AWS
+slug: supplynote-api-performance
+---
+
+## Overview
+
+Led a performance engineering initiative at Supplynote that transformed API response times from unusable (~8s P99) to production-grade (under 80ms P99) — a 100x improvement serving 1,000+ restaurant and F&B businesses.
+
+## Root Cause Analysis
+
+- Expensive nested MongoDB lookups on every request
+- Missing compound indexes on high-traffic query patterns
+- No caching layer for frequently accessed reference data
+- Schema design that required multiple round-trips per API call
+
+## Solutions Implemented
+
+1. **Schema restructuring** — denormalized frequently joined data to eliminate nested lookups
+2. **Compound indexing** — profiled slow queries and added targeted indexes
+3. **Redis caching** — reduced database read load by ~45%, improving average response time by ~60%
+4. **MongoDB sharding** — designed strategy supporting 10x data growth (500K → 5M+ records)
+
+## Key Results
+
+- P99 latency: ~8s → under 80ms
+- Database read load reduced by ~45%
+- Kubernetes auto-scaling handling 3x traffic spikes without degradation
+- Zero performance regression during 10x data growth

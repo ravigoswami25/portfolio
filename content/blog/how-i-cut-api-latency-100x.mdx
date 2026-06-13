@@ -1,0 +1,57 @@
+---
+title: "How I Cut API Latency 100x"
+date: "2025-06-01"
+summary: "A deep dive into the performance optimization work at Supplynote that reduced P99 API latency from ~8 seconds to under 80 milliseconds."
+tags:
+  - performance
+  - mongodb
+  - nodejs
+  - redis
+slug: how-i-cut-api-latency-100x
+---
+
+When I joined the performance investigation at Supplynote, our P99 API latency was hovering around **8 seconds**. For a B2B platform serving 1,000+ restaurants, that wasn't just slow — it was a business problem. Users were abandoning workflows, support tickets were piling up, and the team was firefighting instead of shipping features.
+
+Here's how we brought it down to **under 80ms** — a 100x improvement.
+
+## Step 1: Measure Before You Optimize
+
+The first mistake teams make is guessing. We instrumented every endpoint with APM (Application Performance Monitoring) and identified the top 10 slowest routes. The pattern was clear: nested MongoDB `$lookup` aggregations were the culprit, running on every request for core business flows.
+
+## Step 2: Schema Redesign
+
+MongoDB's flexibility is a double-edged sword. Our document structure required 3–4 lookups to assemble a single API response. The fix wasn't more indexes — it was **denormalization**.
+
+We restructured documents to embed frequently accessed related data, trading a small amount of storage for massive read performance gains. This alone cut average response times by ~70%.
+
+## Step 3: Strategic Indexing
+
+With the new schema in place, we profiled remaining slow queries using MongoDB's `explain()` and added **compound indexes** matched to actual query patterns — not theoretical ones.
+
+Key lesson: an index on `(restaurantId, createdAt)` beats separate indexes on each field when your queries always filter by both.
+
+## Step 4: Redis Caching Layer
+
+Reference data (menu categories, tax configs, location metadata) was being fetched from MongoDB on every request despite changing rarely. A Redis caching layer with TTL-based invalidation reduced database read load by **~45%** and improved average response time by **~60%** on high-traffic endpoints.
+
+## Step 5: Plan for Growth
+
+With performance stabilized, we designed a MongoDB sharding strategy to handle 10x data growth (500K → 5M+ records) without revisiting the architecture. Kubernetes auto-scaling on AWS handled 3x traffic spikes during peak restaurant hours.
+
+## Results
+
+| Metric | Before | After |
+|--------|--------|-------|
+| P99 Latency | ~8s | under 80ms |
+| DB Read Load | Baseline | -45% |
+| Avg Response Time | Baseline | -60% |
+| Data Volume | 500K records | 5M+ (no degradation) |
+
+## Takeaways
+
+1. **Profile first** — APM data beats intuition every time
+2. **Schema matters more than indexes** — denormalize when read patterns are predictable
+3. **Cache reference data** — not everything needs to hit the database
+4. **Design for 10x** — performance work isn't done until you've planned for growth
+
+Performance optimization isn't a one-time sprint. It's an ongoing discipline of measuring, hypothesizing, and validating. But when you get it right, the impact on user experience and team velocity is transformative.

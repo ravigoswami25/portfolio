@@ -1,0 +1,34 @@
+---
+title: "CodePush OTA Update Server"
+description: "A custom Over-the-Air update server for mobile applications, enabling zero-downtime hotfixes without app store review cycles."
+company: "Appinventiv Technologies"
+impact: "Reduced app release turnaround from 3–5 days to under 4 hours"
+technologies:
+  - Node.js
+  - CodePush
+  - Docker
+  - Kubernetes
+  - MongoDB
+slug: codepush-ota-server
+---
+
+## Overview
+
+Built and maintained a custom CodePush OTA update server that enables mobile teams to push JavaScript bundle updates directly to users without going through app store review.
+
+## Features
+
+- **Staged rollouts** with percentage-based deployment to limit blast radius
+- **Rollback support** for instant recovery from bad releases
+- **Version targeting** to deliver updates to specific app versions and platforms
+- **Audit logging** for compliance and debugging
+
+## Key Results
+
+- App release turnaround reduced from 3–5 days to under 4 hours
+- Zero-downtime hotfixes for critical production bugs
+- Integrated into existing CI/CD pipeline (Jenkins + Docker + Kubernetes)
+
+## Technical Approach
+
+The server handles bundle storage, diff generation, and client authentication. Deployment gates in staging environments reduced production incidents by ~35% before OTA releases reached end users.
