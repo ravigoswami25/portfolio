@@ -15,7 +15,7 @@ export const heroStats = [
   { value: "6+", label: "Years in Production Engineering" },
   { value: "100x", label: "API Speed Gain (8s → 80ms P99)" },
   { value: "4L+", label: "Monthly Active Users Served" },
-  { value: "5M+", label: "Records at Scale (MongoDB)" },
+  { value: "5M+", label: "Records at Scale" },
   { value: "99.9%", label: "Payment Gateway Uptime" },
   { value: "1,000+", label: "Sites Onboarded" },
 ];
