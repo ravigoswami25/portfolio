@@ -23,11 +23,9 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Home"
-          className="inline-flex items-center gap-0.5 rounded-lg border border-card-border bg-card/80 px-3.5 py-2 font-mono text-sm tracking-tight shadow-sm transition-all hover:border-accent/40 hover:bg-accent/10 active:scale-[0.98]"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-card-border bg-card font-mono text-xs font-bold tracking-wide text-foreground transition-all hover:border-accent/50 hover:bg-accent/10 hover:text-accent active:scale-95"
         >
-          <span className="text-muted/70">&lt;</span>
-          <span className="font-semibold text-foreground">RG</span>
-          <span className="text-muted/70"> /&gt;</span>
+          RG
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
