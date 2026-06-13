@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Download } from "lucide-react";
-import { navLinks, pageLinks, personal } from "@/data/resume";
+import { navLinks, pageLinks } from "@/data/resume";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -22,10 +22,12 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="inline-flex items-center gap-1 rounded-lg border border-card-border bg-card/80 px-3.5 py-2 font-mono text-sm font-semibold tracking-tight text-foreground shadow-sm transition-all hover:border-accent/40 hover:bg-accent/10 hover:text-accent hover:shadow-accent/10 active:scale-[0.98]"
+          aria-label="Home"
+          className="inline-flex items-center gap-0.5 rounded-lg border border-card-border bg-card/80 px-3.5 py-2 font-mono text-sm tracking-tight shadow-sm transition-all hover:border-accent/40 hover:bg-accent/10 active:scale-[0.98]"
         >
-          {personal.name.split(" ")[0]}
-          <span className="text-accent">.</span>
+          <span className="text-muted/70">&lt;</span>
+          <span className="font-semibold text-foreground">RG</span>
+          <span className="text-muted/70"> /&gt;</span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
